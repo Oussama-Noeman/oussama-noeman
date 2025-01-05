@@ -1,0 +1,29 @@
+query GetAllContactus(
+  $page: PositiveInt!
+  $limit: PositiveInt!
+  $searchFields: SearchContactUsFields!
+  $sort: SortContactUsArgs!
+  $filters: ContactUsFilter
+) {
+  getAllContactus(
+    page: $page
+    limit: $limit
+    searchFields: $searchFields
+    sort: $sort
+    filters: $filters
+  ) {
+    error {
+      field
+      message
+    }
+    length
+    items {
+      _id
+      createdAt
+      full_name
+      phone_number
+      subject
+      body
+    }
+  }
+}
