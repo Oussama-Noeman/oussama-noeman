@@ -1,0 +1,11 @@
+mutation CreateContact($name: String!, $email: String!, $phone: String, $message: String) {
+  createContact(input: { name: $name, email: $email, phone: $phone, message: $message }) {
+    id
+    name
+    email
+    phone
+    message
+    createdAt
+    updatedAt
+  }
+}

@@ -10,6 +10,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { useRouter } from "next/navigation";
 
 interface ProductTableProps {
   products: Product[];
@@ -26,6 +27,7 @@ export const ProductTable: React.FC<ProductTableProps> = ({
   totalItems,
   limit,
 }) => {
+  const router = useRouter()
   return (
     <div>
       <Table>
@@ -40,7 +42,8 @@ export const ProductTable: React.FC<ProductTableProps> = ({
         </TableHeader>
         <TableBody>
           {products.map((product) => (
-            <TableRow key={product._id}>
+            <TableRow key={product._id} className="cursor-pointer" onClick={()=>router.push(`/all-products/${product?._id}`)}>
+              {/* <Link href={`/all-products/${product?._id}`} > */}
               <TableCell>{product._id}</TableCell>
               <TableCell>{product.title}</TableCell>
               <TableCell>{product.description}</TableCell>
@@ -48,7 +51,9 @@ export const ProductTable: React.FC<ProductTableProps> = ({
               <TableCell>
                 {new Date(product.createdAt).toLocaleDateString()}
               </TableCell>
+            {/* </Link> */}
             </TableRow>
+            
           ))}
         </TableBody>
       </Table>
